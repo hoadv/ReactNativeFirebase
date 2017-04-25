@@ -1,0 +1,20 @@
+.project-container {
+  border: solid 1px;
+  margin: 20px;
+  padding: 10px;
+  width: 50%;
+  text-align: center;
+}
+
+.input-number {
+  width: 50px;
+}
+
+.project-wrapper {
+  border: solid 1px;
+  padding: 5px;
+}
+
+.project-wrapper a {
+  text-decoration: none;
+}

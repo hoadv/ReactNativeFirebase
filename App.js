@@ -1,23 +1,18 @@
 import React from 'react';
-import { AppRegistry } from 'react-native';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import {
+  AppRegistry,
+  StyleSheet
+} from 'react-native';
+import { StackNavigator } from 'react-navigation';
+import OrdersScreen from './src/components/orders/';
+import ItemsScreen from './src/components/items/';
 
-import AppReducer from './src/reducers';
-import AppWithNavigationState from './src/navigators/app-navigator';
-import { configureFirebase } from './store.js';
+import './store.js';
 
-class ReactNativeFirebase extends React.Component {
-  store = createStore(AppReducer);
-  firebase = configureFirebase();
-  
-  render() {
-    return (
-      <Provider store={this.store}>
-        <AppWithNavigationState />
-      </Provider>
-    );
-  }
-}
+
+const ReactNativeFirebase = StackNavigator({
+  Index: { screen: OrdersScreen },
+  Items: { screen: ItemsScreen}
+});
 
 AppRegistry.registerComponent('ReactNativeFirebase', () => ReactNativeFirebase);
