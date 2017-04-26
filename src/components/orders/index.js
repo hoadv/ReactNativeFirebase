@@ -20,7 +20,10 @@ export default class OrdersScreen extends Component {
   }
 
   updateOrders = (snapshot) => {
-    const orders = snapshot.val();
+    let orders = snapshot.val();
+    if (!orders) {
+      orders = [];
+    }
     this.setState({ orders });
   }
 
@@ -38,18 +41,18 @@ export default class OrdersScreen extends Component {
               ? <Text>Loading</Text>
               : (this.state.orders.length === 0)
                 ? <Text>Orders list is empty</Text>
-                : Object.keys(this.state.orders).map((key) => (
+                : Object.keys(this.state.orders).map((key, index) => (
                   <Button
                     key={key}
-                    onPress={() => navigate('Items')}
-                    title={this.state.orders[key].name + ', qty: ' + this.state.orders[key].num + ', total: ' + this.state.orders[key].total}
+                    onPress={() => navigate('Cart', {key: key})}
+                    title={'order ' + (index + 1) + ', qty: ' + this.state.orders[key].num + ', total: ' + this.state.orders[key].total}
                     />
                 ))
           )}
         </ScrollView>
         <Button
-          onPress={() => navigate('CreateOrder')}
-          title="create Order"
+          onPress={() => navigate('Items')}
+          title="create order"
           />
       </View >
     );
